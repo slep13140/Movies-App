@@ -1,0 +1,46 @@
+.ant-card {
+  padding: 0;
+  width: 454px;
+  height: 281px;
+  display: flex;
+}
+
+.cardsMovie .ant-card-cover {
+  width: 183px;
+  margin: 0;
+}
+.cardsMovie .ant-card-cover img {
+  width: 183px;
+  height: 100%;
+}
+.cardsMovie .ant-card-body {
+  padding: 0;
+  margin: 0;
+  width: 268px;
+}
+
+.cardsMovie .ant-card-meta {
+  margin: 12px 20px 0px 20px;
+  font-size: 20px;
+}
+.cardsMovie .ant-card-meta-title {
+  font-family: "Inter", sans-serif;
+  font-size: 0.83em;
+  line-height: 28px;
+  white-space: pre-line;
+}
+.createDate {
+  color: #827e7e;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  line-height: 22px;
+  margin-left: 20px;
+  margin-top: 7px;
+}
+
+.cardsMovie .ant-rate {
+  width: 239px;
+  height: 46px;
+  margin: 0px 9px 0px 20px;
+  font-size: 16px;
+}

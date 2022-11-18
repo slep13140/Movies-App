@@ -1,0 +1,23 @@
+.ant-row .ant-card-body {
+  padding: 0;
+}
+
+.ant-row > div {
+  width: 454px !important;
+  height: 281px;
+  margin-top: 34px;
+}
+.ant-row > div:nth-child(odd) {
+  margin-left: 32px;
+}
+
+.ant-row > div:nth-child(even) {
+  margin-left: 37px;
+}
+.ant-list.movie-list {
+  width: 1010px;
+  margin: 0 auto;
+}
+.ant-list > .ant-list-pagination {
+  text-align: center;
+}

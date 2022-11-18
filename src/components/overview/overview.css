@@ -1,0 +1,13 @@
+.cardsMovie .overview {
+  width: 228px;
+  max-height: 129px;
+  margin: 7px 20px 0px 20px;
+  font-family: "Inter", sans-serif;
+  font-size: 12px;
+  line-height: 22px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+}
