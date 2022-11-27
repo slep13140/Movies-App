@@ -1,8 +1,8 @@
-.cardsMovie .overview {
-  width: 228px;
-  max-height: 129px;
-  margin: 7px 20px 0px 20px;
-  font-family: "Inter", sans-serif;
+.card-movie .overview {
+  width: 367px;
+  max-height: 92px;
+  margin: 10px 10px 0px 10px;
+  font-family: 'Inter', sans-serif;
   font-size: 12px;
   line-height: 22px;
   overflow: hidden;
@@ -10,4 +10,11 @@
   display: -webkit-box;
   -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
+}
+@media (min-width: 576px) {
+  .card-movie .overview {
+    width: 228px;
+    max-height: 129px;
+    margin: 7px 0px 0px 0px;
+  }
 }

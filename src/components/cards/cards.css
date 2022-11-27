@@ -1,46 +1,107 @@
-.ant-card {
-  padding: 0;
-  width: 454px;
-  height: 281px;
+.card-movie {
+  width: 387px;
+  height: 245px;
+}
+.card-movie > img {
+  position: absolute;
+  visibility: hidden;
+}
+.ant-card.ant-card-bordered.cards-meta {
+  border: none;
+}
+.card-movie .ant-card-body {
+  height: 245px;
+  padding: 0px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.card-movie .ant-card-body img {
+  width: 60px;
+  height: 91px;
+  margin-top: 6px;
+  margin-left: 10px;
+}
+.card-title {
+  width: 296px;
+  margin-top: 5px;
+  margin-left: 13px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-movie .ant-card-meta-detail {
+  width: 296px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  line-height: 22px;
   display: flex;
 }
-
-.cardsMovie .ant-card-cover {
-  width: 183px;
-  margin: 0;
+.card-movie .ant-card-meta-title {
+  width: 260px;
+  white-space: pre-wrap;
 }
-.cardsMovie .ant-card-cover img {
-  width: 183px;
-  height: 100%;
-}
-.cardsMovie .ant-card-body {
-  padding: 0;
-  margin: 0;
-  width: 268px;
-}
-
-.cardsMovie .ant-card-meta {
-  margin: 12px 20px 0px 20px;
-  font-size: 20px;
-}
-.cardsMovie .ant-card-meta-title {
-  font-family: "Inter", sans-serif;
-  font-size: 0.83em;
-  line-height: 28px;
-  white-space: pre-line;
+.cards-meta .ant-card-meta-description {
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+  border: 2px solid #e9d100;
+  border-radius: 50%;
+  text-align: center;
 }
 .createDate {
   color: #827e7e;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 12px;
   line-height: 22px;
-  margin-left: 20px;
   margin-top: 7px;
 }
-
-.cardsMovie .ant-rate {
+.card-movie .ant-rate {
   width: 239px;
   height: 46px;
-  margin: 0px 9px 0px 20px;
+  margin-left: 148px;
+  margin-bottom: 0;
   font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+@media (min-width: 576px) {
+  .card-movie {
+    width: 454px;
+    height: 281px;
+    display: flex;
+  }
+  .card-movie > img {
+    position: relative;
+    visibility: visible;
+    width: 183px;
+    height: 281px;
+  }
+  .ant-card.ant-card-bordered.cards-meta {
+    width: 239px;
+    margin-left: 20px;
+  }
+  .card-movie .ant-card-body {
+    height: 281px;
+  }
+  .card-movie .ant-card-body img {
+    position: absolute;
+    visibility: hidden;
+  }
+  .card-title {
+    width: 239px;
+    margin-top: 12px;
+    margin-left: 0px;
+  }
+  .card-movie .ant-card-meta-detail {
+    width: 239px;
+  }
+  .card-movie .ant-card-meta-title {
+    width: 200px;
+  }
+  .card-movie .ant-rate {
+    width: 239px;
+    height: 46px;
+    margin-left: 0px;
+    margin-bottom: 0;
+  }
 }

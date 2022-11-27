@@ -1,23 +1,28 @@
 .ant-row .ant-card-body {
   padding: 0;
 }
-
+.ant-row {
+  margin: 0 !important;
+}
 .ant-row > div {
-  width: 454px !important;
-  height: 281px;
-  margin-top: 34px;
+  width: 387px !important;
+  height: 245px;
+  margin-top: 10px;
+  margin-left: 16px;
+  filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.15));
 }
-.ant-row > div:nth-child(odd) {
-  margin-left: 32px;
-}
-
-.ant-row > div:nth-child(even) {
-  margin-left: 37px;
-}
-.ant-list.movie-list {
-  width: 1010px;
-  margin: 0 auto;
+@media (min-width: 576px) {
+  .ant-row > div {
+    width: 454px !important;
+    height: 281px;
+    margin-top: 34px;
+    margin-left: 36px;
+    filter: drop-shadow(0px 4px 12px rgba(0, 0, 0, 0.15));
+  }
 }
 .ant-list > .ant-list-pagination {
   text-align: center;
+}
+.ant-col {
+  padding: 0px !important;
 }

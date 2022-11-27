@@ -20,6 +20,7 @@ function CardMovie(props) {
     overview,
     vote,
     poster,
+    voteAverage,
   } = props
   let countRow = 0
   if (genres) {
@@ -33,24 +34,27 @@ function CardMovie(props) {
     })
   }
 
-  if (title && title.length > 25) {
+  if (title && title.length > 20) {
     const word = title.split(' ')
     let langTitle = 0
     word.forEach((i) => {
       langTitle += i.length
-      if (langTitle >= 25) {
+      if (langTitle >= 20) {
         countRow += 1
         langTitle = i.length
       }
     })
   }
   return (
-    <div>
-      <Card hoverable className="cardsMovie" cover={<img alt="example" src={`${imgBase}${poster}`} />}>
-        <Meta title={title} />
-        <span className="createDate">{format(new Date(releaseDate), 'PP')}</span>
-
-        <Tags genresData={genres} />
+    <div className="card-movie">
+      <img alt="example" src={`${imgBase}${poster}`} />
+      <Card className="cards-meta">
+        <img alt="example" src={`${imgBase}${poster}`} />
+        <div className="card-title">
+          <Meta title={title} description={voteAverage} />
+          <span className="createDate">{format(new Date(releaseDate), 'PP')}</span>
+          <Tags genresData={genres} />
+        </div>
         <Overview countRow={countRow} overview={overview} />
         <Rate count="10" allowHalf disabled value={vote} />
       </Card>

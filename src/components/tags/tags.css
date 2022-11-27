@@ -1,13 +1,17 @@
 .genres .ant-tag-has-color {
   height: 20px;
   color: #000000;
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
   font-size: 12px;
   line-height: 15px;
   border: 1px solid #d9d9d9;
 }
 .genres {
-  width: 228px;
-  margin-left: 19px;
+  width: 249px;
   margin-top: 7px;
+}
+@media (min-width: 576px) {
+  .genres {
+    width: 239px;
+  }
 }
