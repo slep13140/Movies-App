@@ -7,7 +7,7 @@
 }
 .app-container > span {
   width: 420px;
-  height: 1755px;
+
   background-color: #ffffff;
   margin: auto;
   display: flex;
@@ -17,6 +17,5 @@
 @media (min-width: 576px) {
   .app-container > span {
     width: 1010px;
-    height: 1147px;
   }
 }

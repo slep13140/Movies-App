@@ -6,10 +6,10 @@ const { Paragraph } = Typography
 
 function Overview({ countRow, overview }) {
   let counterRow = 0
-  let overview1 = overview
+  let newOverview = overview
   if (overview && overview.length > (6 - countRow) * 36) {
     let lengthOverview = 0
-    const newOverview = overview
+    const newArray = overview
       .split(' ')
       .map((i) => {
         if (counterRow > 5 - countRow) {
@@ -25,7 +25,7 @@ function Overview({ countRow, overview }) {
       })
       .join(' ')
       .trimEnd()
-    overview1 = `${newOverview.substring(0, newOverview.lastIndexOf(' '))}...`
+    newOverview = `${newArray.substring(0, newArray.lastIndexOf(' '))}...`
   }
 
   return (
@@ -40,7 +40,7 @@ function Overview({ countRow, overview }) {
         },
       }}
     >
-      {overview1}
+      {newOverview}
     </Paragraph>
   )
 }

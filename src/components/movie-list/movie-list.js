@@ -6,7 +6,8 @@ import CardMovie from '../cards/cards'
 import './movie-list.css'
 
 function MovieList(props) {
-  const { dataMovies } = props
+  const { dataMovies, newPage } = props
+  const { res, cur } = props
 
   return (
     <List
@@ -21,7 +22,13 @@ function MovieList(props) {
         xxl: 2,
       }}
       pagination={{
-        pageSize: 6,
+        current: cur,
+        defaultCurrent: 1,
+        total: res,
+        pageSize: 20,
+        onChange: (page) => {
+          newPage(page)
+        },
       }}
       dataSource={dataMovies}
       renderItem={(item) => (

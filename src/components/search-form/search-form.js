@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { debounce } from 'lodash'
 
 import './search-form.css'
 
@@ -12,27 +13,18 @@ class SearchForm extends Component {
       this.setState({
         label: e.target.value,
       })
+
+      this.searchResult(e.target.value)
     }
-    this.onSubmit = (e) => {
-      if (e.code === 'Enter') {
-        this.setState({
-          label: '',
-        })
-      }
-    }
+    this.searchResult = debounce((val) => {
+      const { newSearch } = this.props
+      newSearch(val)
+    }, 800)
   }
 
   render() {
     const { label } = this.state
-    return (
-      <input
-        className="new-search"
-        placeholder="Type to search..."
-        onChange={this.onLabelChange}
-        onKeyPress={this.onSubmit}
-        value={label}
-      />
-    )
+    return <input className="new-search" placeholder="Type to search..." onChange={this.onLabelChange} value={label} />
   }
 }
 export default SearchForm

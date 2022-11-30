@@ -45,6 +45,9 @@ function CardMovie(props) {
       }
     })
   }
+
+  const release = releaseDate ? format(new Date(releaseDate), 'PP') : null
+
   return (
     <div className="card-movie">
       <img alt="example" src={`${imgBase}${poster}`} />
@@ -52,7 +55,7 @@ function CardMovie(props) {
         <img alt="example" src={`${imgBase}${poster}`} />
         <div className="card-title">
           <Meta title={title} description={voteAverage} />
-          <span className="createDate">{format(new Date(releaseDate), 'PP')}</span>
+          <span className="createDate">{release}</span>
           <Tags genresData={genres} />
         </div>
         <Overview countRow={countRow} overview={overview} />
