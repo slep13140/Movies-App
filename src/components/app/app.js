@@ -2,15 +2,13 @@ import React, { Component } from 'react'
 import { Offline, Online } from 'react-detect-offline'
 
 import MovieService from '../../services/movie-services'
-import MovieList from '../movie-list/movie-list'
-import Spinner from '../spinner/spinner'
-import ErrorIndicator from '../error-indicator/error-indicator'
-import SearchForm from '../search-form/search-form'
 import SearchToggle from '../search-toggle/search-toggle'
+import { Provider } from '../movie-conetext/movie-conetext'
 
 import 'antd/dist/antd.min.css'
 import './app.css'
 
+const ratedMovies = []
 export default class App extends Component {
   constructor() {
     super()
@@ -21,17 +19,41 @@ export default class App extends Component {
       totalResults: null,
       loading: true,
       error: false,
+      sessionId: null,
+      allGen: null,
     }
-
+    this.movieService = new MovieService()
     this.updateMovieList = this.updateMovieList.bind(this)
     this.updatePage = this.updatePage.bind(this)
+    this.rateMovie = (id, value) => {
+      this.setState(({ dataMovies }) => {
+        const idx = dataMovies.findIndex((el) => el.id === id)
+        const oldItem = dataMovies[idx]
+        const newItem = {
+          ...oldItem,
+          voteRate: value,
+        }
+        const newRate = {
+          ...newItem,
+          moveId: newItem.id,
+          moveRate: newItem.voteRate,
+        }
+        const newArr = [...dataMovies.slice(0, idx), newItem, ...dataMovies.slice(idx + 1)]
+        ratedMovies.push(newRate)
+        localStorage.setItem('ratedMovies', JSON.stringify(ratedMovies))
+        return {
+          dataMovies: newArr,
+        }
+      })
+      const { sessionId } = this.state
+      this.movieService.onRateMovie(id, sessionId, value)
+    }
   }
 
   componentDidMount() {
-    const url1 = 'https://api.themoviedb.org/3/search/'
-    const url2 = 'movie?api_key=26d8f194568f965201933df62099f0a0&language=en-US&page=1&include_adult=false&query='
     const { searchResult, page } = this.state
-    MovieService(`${url1}${url2}${searchResult}&page=${page}`)
+    this.movieService
+      .getSearchMovie(searchResult, page)
       .then((movie) => {
         this.setState({
           dataMovies: movie.results,
@@ -42,6 +64,13 @@ export default class App extends Component {
       .catch(() => {
         this.setState({ error: true })
       })
+    this.movieService.getGuestSession().then((key) => {
+      this.setState({ sessionId: key.guest_session_id })
+    })
+    this.movieService.getAllGenres().then((genres) => {
+      this.setState({ allGen: genres })
+    })
+    localStorage.setItem('ratedMovies', JSON.stringify(ratedMovies))
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -61,39 +90,81 @@ export default class App extends Component {
     if (!text) {
       return
     }
-
-    this.setState({ searchResult: text, page: 1 })
-    this.componentDidMount()
+    const rateMovie = JSON.parse(localStorage.getItem('ratedMovies'))
+    this.movieService
+      .getSearchMovie(text, 1)
+      .then((movie) => {
+        const newArray = movie.results.map((elem) => {
+          const index = { ...elem }
+          const user = rateMovie.find((item) => item.moveId === index.id)
+          if (user) {
+            index.voteRate = user.moveRate
+          }
+          return index
+        })
+        this.setState({
+          dataMovies: newArray,
+          searchResult: text,
+          page: 1,
+          totalResults: movie.total_results,
+          loading: false,
+        })
+      })
+      .catch(() => {
+        this.setState({ error: true })
+      })
   }
 
   updatePage(num) {
     if (!num) {
       return
     }
-
-    this.setState({ page: num })
-    this.componentDidMount()
+    const { searchResult } = this.state
+    const rateMovie = JSON.parse(localStorage.getItem('ratedMovies'))
+    this.movieService
+      .getSearchMovie(searchResult, num)
+      .then((movie) => {
+        const newArray = movie.results.map((elem) => {
+          const index = { ...elem }
+          const user = rateMovie.find((item) => item.moveId === index.id)
+          if (user) {
+            index.voteRate = user.moveRate
+          }
+          return index
+        })
+        this.setState({
+          dataMovies: newArray,
+          page: num,
+          loading: false,
+        })
+      })
+      .catch(() => {
+        this.setState({ error: true })
+      })
   }
 
   render() {
-    const { dataMovies, loading } = this.state
+    const { dataMovies, loading, guestMovies } = this.state
     const { error, totalResults, page } = this.state
-    const errorMessage = !loading && error ? <ErrorIndicator /> : null
-    const spinner = loading && !error ? <Spinner /> : null
-    const hasDate = !loading && !error
-
-    const content = hasDate ? (
-      <MovieList dataMovies={dataMovies} newPage={this.updatePage} res={totalResults} cur={page} />
-    ) : null
+    const { allGen } = this.state
 
     return (
       <div className="app-container">
         <Online>
-          <SearchToggle />
-          <SearchForm newSearch={this.updateMovieList} />
-          {errorMessage}
-          {spinner}
-          {content}
+          <Provider value={allGen}>
+            <SearchToggle
+              newSearch={this.updateMovieList}
+              ratedMovies={this.ratedMovies}
+              dataMovies={dataMovies}
+              updatePage={this.updatePage}
+              totalResults={totalResults}
+              currentPage={page}
+              rateMovie={this.rateMovie}
+              loading={loading}
+              error={error}
+              guestMovies={guestMovies}
+            />
+          </Provider>
         </Online>
         <Offline>Only shown offline (surprise!)</Offline>
       </div>

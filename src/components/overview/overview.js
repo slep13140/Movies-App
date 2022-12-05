@@ -4,15 +4,27 @@ import './overview.css'
 
 const { Paragraph } = Typography
 
-function Overview({ countRow, overview }) {
+function Overview({ countRow, overview, genData }) {
+  let countGenresRow = countRow
   let counterRow = 0
   let newOverview = overview
-  if (overview && overview.length > (6 - countRow) * 36) {
+  if (genData) {
+    let lengthGenres = 0
+    genData.forEach((i) => {
+      lengthGenres += i.name.length
+      if (lengthGenres >= 25) {
+        countGenresRow += 1
+        lengthGenres = i.name.length
+      }
+    })
+  }
+
+  if (overview && overview.length > (6 - countGenresRow) * 36) {
     let lengthOverview = 0
     const newArray = overview
       .split(' ')
       .map((i) => {
-        if (counterRow > 5 - countRow) {
+        if (counterRow > 5 - countGenresRow) {
           return ''
         }
         lengthOverview += i.length + 1
@@ -32,7 +44,7 @@ function Overview({ countRow, overview }) {
     <Paragraph
       className="overview"
       ellipsis={{
-        rows: 6 - countRow,
+        rows: 6 - countGenresRow,
         expandable: false,
         autoSize: {
           minRows: 3,

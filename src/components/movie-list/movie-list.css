@@ -22,6 +22,7 @@
 }
 .ant-list > .ant-list-pagination {
   text-align: center;
+  margin-bottom: 2px;
 }
 .ant-col {
   padding: 0px !important;

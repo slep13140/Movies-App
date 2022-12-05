@@ -6,6 +6,12 @@
   position: absolute;
   visibility: hidden;
 }
+.card-movie > img.posterErr {
+  background-image: url(/src/image/index.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
 .ant-card.ant-card-bordered.cards-meta {
   border: none;
 }
@@ -44,9 +50,18 @@
   width: 30px;
   height: 30px;
   margin-left: 5px;
-  border: 2px solid #e9d100;
+  border: 2px solid #e90000;
   border-radius: 50%;
   text-align: center;
+}
+.smallRate .cards-meta .ant-card-meta-description {
+  border-color: #e97e00;
+}
+.middleRate .cards-meta .ant-card-meta-description {
+  border-color: #e9d100;
+}
+.hightRate .cards-meta .ant-card-meta-description {
+  border-color: #66e900;
 }
 .createDate {
   color: #827e7e;

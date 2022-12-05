@@ -1,6 +1,37 @@
 .ant-tabs.ant-tabs-top.search-toggle {
+  width: 420px;
+  background-color: #ffffff;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+.ant-tabs-content.ant-tabs-content-top {
+  min-height: 1147px;
+  height: auto;
+}
+.ant-tabs-tabpane {
+  min-height: 1147px;
+  height: auto;
+}
+.containerSearch {
+  display: flex;
+  flex-direction: column;
+  min-height: 1147px;
+  height: auto;
+}
+
+@media (min-width: 576px) {
+  .ant-tabs.ant-tabs-top.search-toggle {
+    width: 1010px;
+  }
+}
+.ant-tabs.ant-tabs-top.search-toggle .ant-tabs-nav {
   margin: 13px auto;
   font-family: 'Inter', sans-serif;
   font-size: 14px;
   line-height: 22px;
+}
+.ant-tabs-nav + .ant-tabs-content-holder {
+  min-height: 1147px;
+  height: auto;
 }

@@ -5,9 +5,8 @@
   font-weight: 400;
   font-style: normal;
 }
-.app-container > span {
+.app-container {
   width: 420px;
-
   background-color: #ffffff;
   margin: auto;
   display: flex;
@@ -15,7 +14,7 @@
 }
 
 @media (min-width: 576px) {
-  .app-container > span {
+  .app-container {
     width: 1010px;
   }
 }

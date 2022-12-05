@@ -1,13 +1,13 @@
-import { Card, List } from 'antd'
 import React from 'react'
+import { Card, List } from 'antd'
 
-import CardMovie from '../cards/cards'
+import Cards from '../cards/cards'
 
 import './movie-list.css'
 
 function MovieList(props) {
-  const { dataMovies, newPage } = props
-  const { res, cur } = props
+  const { dataMovies, updatePage } = props
+  const { totalResults, currentPage, rateMovie } = props
 
   return (
     <List
@@ -22,30 +22,43 @@ function MovieList(props) {
         xxl: 2,
       }}
       pagination={{
-        current: cur,
+        current: currentPage,
         defaultCurrent: 1,
-        total: res,
+        total: totalResults,
         pageSize: 20,
         onChange: (page) => {
-          newPage(page)
+          updatePage(page)
         },
       }}
       dataSource={dataMovies}
-      renderItem={(item) => (
-        <List.Item>
-          <Card className="card-container">
-            <CardMovie
-              title={item.title}
-              releaseDate={item.release_date}
-              overview={item.overview}
-              vote={item.vote_average}
-              poster={item.poster_path}
-              key={item.id}
-              voteAverage={item.vote_average}
-            />
-          </Card>
-        </List.Item>
-      )}
+      renderItem={(item) => {
+        let colorRate = 'lowRate'
+        if (item.vote_average > 3 && item.vote_average <= 5) {
+          colorRate = 'smallRate'
+        } else if (item.vote_average > 5 && item.vote_average <= 7) {
+          colorRate = 'middleRate'
+        } else if (item.vote_average > 7) {
+          colorRate = 'hightRate'
+        }
+        return (
+          <List.Item>
+            <Card className={colorRate}>
+              <Cards
+                title={item.title}
+                releaseDate={item.release_date}
+                genId={item.genre_ids}
+                overview={item.overview}
+                vote={item.voteRate}
+                poster={item.poster_path}
+                key={item.id}
+                movieID={item.id}
+                voteAverage={item.vote_average}
+                rateMovie={rateMovie}
+              />
+            </Card>
+          </List.Item>
+        )
+      }}
     />
   )
 }
