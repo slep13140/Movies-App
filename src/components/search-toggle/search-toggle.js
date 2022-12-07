@@ -1,5 +1,6 @@
 import React from 'react'
 import { Tabs } from 'antd'
+import PropTypes from 'prop-types'
 
 import SearchForm from '../search-form/search-form'
 import MovieList from '../movie-list/movie-list'
@@ -12,6 +13,7 @@ function SearchToggle(props) {
   const { newSearch, ratedMovies, dataMovies } = props
   const { updatePage, totalResults, currentPage } = props
   const { rateMovie, loading, error } = props
+
   let guestMovies = []
   let rateTotalResults
   if (dataMovies) {
@@ -64,3 +66,19 @@ function SearchToggle(props) {
   return <Tabs className="search-toggle" items={items} onChange={ratedMovies} />
 }
 export default SearchToggle
+
+SearchToggle.propTypes = {
+  newSearch: PropTypes.func.isRequired,
+  dataMovies: PropTypes.arrayOf(PropTypes.shape),
+  updatePage: PropTypes.func.isRequired,
+  totalResults: PropTypes.number,
+  currentPage: PropTypes.number.isRequired,
+  rateMovie: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired,
+}
+
+SearchToggle.defaultProps = {
+  totalResults: 0,
+  dataMovies: [],
+}

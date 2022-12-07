@@ -1,5 +1,7 @@
 import React from 'react'
 import { Typography } from 'antd'
+import PropTypes from 'prop-types'
+
 import './overview.css'
 
 const { Paragraph } = Typography
@@ -58,3 +60,13 @@ function Overview({ countRow, overview, genData }) {
 }
 
 export default Overview
+
+Overview.propTypes = {
+  countRow: PropTypes.number.isRequired,
+  overview: PropTypes.string.isRequired,
+  genData: PropTypes.arrayOf(PropTypes.shape),
+}
+
+Overview.defaultProps = {
+  genData: [],
+}

@@ -1,5 +1,7 @@
 import { Tag } from 'antd'
 import React from 'react'
+import PropTypes from 'prop-types'
+
 import './tags.css'
 
 function Tags({ genData }) {
@@ -16,3 +18,10 @@ function Tags({ genData }) {
 }
 
 export default Tags
+
+Tags.propTypes = {
+  genData: PropTypes.arrayOf(PropTypes.shape),
+}
+Tags.defaultProps = {
+  genData: [],
+}

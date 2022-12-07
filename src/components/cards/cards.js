@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, Rate } from 'antd'
 import { format } from 'date-fns'
+import PropTypes from 'prop-types'
 
 import Tags from '../tags/tags'
 import Overview from '../overview/overview'
@@ -23,6 +24,7 @@ function Cards(props) {
     movieID,
     rateMovie,
   } = props
+
   let countRow = 0
 
   if (title && title.length > 20) {
@@ -79,6 +81,19 @@ function Cards(props) {
 }
 
 export default Cards
+
 Cards.defaultProps = {
   vote: 0,
+}
+
+Cards.propTypes = {
+  title: PropTypes.string.isRequired,
+  releaseDate: PropTypes.string.isRequired,
+  genId: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  overview: PropTypes.string.isRequired,
+  vote: PropTypes.number,
+  poster: PropTypes.string.isRequired,
+  voteAverage: PropTypes.number.isRequired,
+  movieID: PropTypes.number.isRequired,
+  rateMovie: PropTypes.func.isRequired,
 }

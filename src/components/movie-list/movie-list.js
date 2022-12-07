@@ -1,5 +1,6 @@
 import React from 'react'
 import { Card, List } from 'antd'
+import PropTypes from 'prop-types'
 
 import Cards from '../cards/cards'
 
@@ -64,3 +65,14 @@ function MovieList(props) {
 }
 
 export default MovieList
+
+MovieList.propTypes = {
+  dataMovies: PropTypes.arrayOf(PropTypes.shape).isRequired,
+  updatePage: PropTypes.func.isRequired,
+  totalResults: PropTypes.number,
+  currentPage: PropTypes.number.isRequired,
+}
+
+MovieList.defaultProps = {
+  totalResults: 0,
+}
