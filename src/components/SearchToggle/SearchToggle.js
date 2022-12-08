@@ -2,12 +2,12 @@ import React from 'react'
 import { Tabs } from 'antd'
 import PropTypes from 'prop-types'
 
-import SearchForm from '../search-form/search-form'
-import MovieList from '../movie-list/movie-list'
-import Spinner from '../spinner/spinner'
-import ErrorIndicator from '../error-indicator/error-indicator'
+import SearchForm from '../SearchForm/SearchForm'
+import MovieList from '../MovieList/MovieList'
+import Spinner from '../Spinner/Spinner'
+import ErrorIndicator from '../ErrorIndicator/ErrorIndicator'
 
-import './search-toggle.css'
+import './SearchToggle.css'
 
 function SearchToggle(props) {
   const { newSearch, ratedMovies, dataMovies } = props

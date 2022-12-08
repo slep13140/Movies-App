@@ -2,7 +2,7 @@ import { Tag } from 'antd'
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import './tags.css'
+import './Tags.css'
 
 function Tags({ genData }) {
   let elements = null

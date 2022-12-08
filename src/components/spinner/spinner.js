@@ -1,6 +1,6 @@
 import React from 'react'
 import { Spin } from 'antd'
-import './spinner.css'
+import './Spinner.css'
 
 function Spinner() {
   return <Spin className="spinner" size="large" />

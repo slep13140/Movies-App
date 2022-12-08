@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { debounce } from 'lodash'
 
-import './search-form.css'
+import './SearchForm.css'
 
 class SearchForm extends Component {
   constructor() {

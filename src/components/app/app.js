@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { Offline, Online } from 'react-detect-offline'
 
 import MovieService from '../../services/movie-services'
-import SearchToggle from '../search-toggle/search-toggle'
-import { Provider } from '../movie-conetext/movie-conetext'
+import SearchToggle from '../SearchToggle/SearchToggle'
+import { Provider } from '../MovieConetext/MovieConetext'
 
 import 'antd/dist/antd.min.css'
-import './app.css'
+import './App.css'
 
 const ratedMovies = []
 export default class App extends Component {
@@ -14,7 +14,7 @@ export default class App extends Component {
     super()
     this.state = {
       dataMovies: null,
-      searchResult: 'return',
+      searchResult: '',
       page: 1,
       totalResults: null,
       loading: true,
@@ -52,18 +52,27 @@ export default class App extends Component {
 
   componentDidMount() {
     const { searchResult, page } = this.state
-    this.movieService
-      .getSearchMovie(searchResult, page)
-      .then((movie) => {
-        this.setState({
-          dataMovies: movie.results,
-          totalResults: movie.total_results,
-          loading: false,
+    if (searchResult) {
+      this.movieService
+        .getSearchMovie(searchResult, page)
+        .then((movie) => {
+          this.setState({
+            dataMovies: movie.results,
+            totalResults: movie.total_results,
+            loading: false,
+          })
         })
+        .catch(() => {
+          this.setState({ error: true })
+        })
+    } else {
+      this.setState({
+        dataMovies: [],
+        totalResults: 0,
+        loading: false,
       })
-      .catch(() => {
-        this.setState({ error: true })
-      })
+    }
+
     this.movieService.getGuestSession().then((key) => {
       this.setState({ sessionId: key.guest_session_id })
     })

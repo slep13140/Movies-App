@@ -2,7 +2,7 @@ import React from 'react'
 import { Typography } from 'antd'
 import PropTypes from 'prop-types'
 
-import './overview.css'
+import './Overview.css'
 
 const { Paragraph } = Typography
 

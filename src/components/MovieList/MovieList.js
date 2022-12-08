@@ -2,9 +2,9 @@ import React from 'react'
 import { Card, List } from 'antd'
 import PropTypes from 'prop-types'
 
-import Cards from '../cards/cards'
+import Cards from '../Cards/Cards'
 
-import './movie-list.css'
+import './MovieList.css'
 
 function MovieList(props) {
   const { dataMovies, updatePage } = props

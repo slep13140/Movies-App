@@ -3,11 +3,11 @@ import { Card, Rate } from 'antd'
 import { format } from 'date-fns'
 import PropTypes from 'prop-types'
 
-import Tags from '../tags/tags'
-import Overview from '../overview/overview'
-import { Consumer } from '../movie-conetext/movie-conetext'
+import Tags from '../Tags/Tags'
+import Overview from '../Overview/Overview'
+import { Consumer } from '../MovieConetext/MovieConetext'
 
-import './cards.css'
+import './Cards.css'
 
 const { Meta } = Card
 function Cards(props) {
