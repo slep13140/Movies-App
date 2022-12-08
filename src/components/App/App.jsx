@@ -3,7 +3,7 @@ import { Offline, Online } from 'react-detect-offline'
 
 import MovieService from '../../services/movie-services'
 import SearchToggle from '../SearchToggle/SearchToggle'
-import { Provider } from '../MovieConetext/MovieConetext'
+import { Provider } from '../../movie-context'
 
 import 'antd/dist/antd.min.css'
 import './App.css'
@@ -52,7 +52,7 @@ export default class App extends Component {
 
   componentDidMount() {
     const { searchResult, page } = this.state
-    if (searchResult) {
+    if (searchResult && searchResult.trim()) {
       this.movieService
         .getSearchMovie(searchResult, page)
         .then((movie) => {
@@ -96,7 +96,7 @@ export default class App extends Component {
   }
 
   updateMovieList(text) {
-    if (!text) {
+    if (!text || text.trim().length === 0) {
       return
     }
     const rateMovie = JSON.parse(localStorage.getItem('ratedMovies'))

@@ -10,8 +10,15 @@
   margin: 0px auto;
   padding: 9px 12px;
 }
+.search-label {
+  width: 388px;
+  margin: 0px auto;
+}
 @media (min-width: 576px) {
   .new-search {
+    width: 938px;
+  }
+  .search-label {
     width: 938px;
   }
 }

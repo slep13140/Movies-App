@@ -24,7 +24,11 @@ class SearchForm extends Component {
 
   render() {
     const { label } = this.state
-    return <input className="new-search" placeholder="Type to search..." onChange={this.onLabelChange} value={label} />
+    return (
+      <label htmlFor="newSearch" className="search-label">
+        <input className="new-search" placeholder="Type to search..." onChange={this.onLabelChange} value={label} />
+      </label>
+    )
   }
 }
 export default SearchForm

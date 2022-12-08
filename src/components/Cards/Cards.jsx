@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 
 import Tags from '../Tags/Tags'
 import Overview from '../Overview/Overview'
-import { Consumer } from '../MovieConetext/MovieConetext'
+import { Consumer } from '../../movie-context'
 
 import './Cards.css'
 
